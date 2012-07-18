@@ -38,7 +38,13 @@ public class library_sys {
                 result = "list of books"  ;
                   break;
             case 2  :
-                issuebook(2);
+                System.out.println("enter book code");
+                String Line = ""; // Line read from standard in
+                InputStreamReader converter = new InputStreamReader(System.in);
+                BufferedReader in = new BufferedReader(converter);
+                Line = in.readLine();
+                int j = Integer.parseInt(Line);
+                issuebook(j);
                  result = "enter book code"    ;
                 break;
             case 3    :
