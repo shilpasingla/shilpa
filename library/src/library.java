@@ -59,15 +59,16 @@ public class library {
                     break;
                 }
                 else if(menuOption == 2){
-                    output.print("Reserve a Book");
-                    output.print("\n enter name of book");
+
+                    output.print("reserve a book");
+                    output.print("enter name of book");
                     String bookname = input.readString();
                     Book bb = new Book(bookname);
                     ArrayList<String> list = reserve_book(bb);
                     if(list.size() == 0)
                         output.print("Sorry we don't have that book yet.");
                     else
-                    output.print("Thank You! Enjoy the book");
+                        output.print("Thank You! Enjoy the book");
                     break;
                 }
                 else if(menuOption == 3) {
@@ -79,6 +80,7 @@ public class library {
 
             }catch(IOException ioe) {System.out.println("ERROR");}
     }    }
+
 
     public void selectSecondOption() throws IOException {
         while(true){

@@ -83,22 +83,21 @@ public class library_test {
         Input mockInput = mock(Input.class);
         Output mockOutput = mock(Output.class);
         new library(mockOutput, mockInput);
-        when(mockInput.readString()).thenReturn(0);
+        when(mockInput.readString()).thenReturn("0");
         assertEquals(mockInput.readString(),0);
     }
     @Test
     public void testSelectMenu() throws Exception{
         Input mockInput = mock(Input.class);
         Output mockOutput = mock(Output.class);
-        when(mockInput.read()).thenReturn(3).thenReturn(5).thenReturn(1).thenReturn(2);
+        when(mockInput.read()).thenReturn(3).thenReturn(5).thenReturn(1).thenReturn(2) ;
         (new library(mockOutput, mockInput)).selectMenu();
         verify(mockOutput).print("Exit");
         (new library(mockOutput, mockInput)).selectMenu();
         verify(mockOutput).print("Select a Valid Option");
 
-        verify(mockOutput).print("View Books");
-        (new library(mockOutput, mockInput)).selectMenu();
-        verify(mockOutput).print("Reserve a Book");
+        verify(mockOutput).print("List of Books");
+
     }
     @Test
     public void testSelectSecondOption() throws Exception{
