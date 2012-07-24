@@ -3,7 +3,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 /**
@@ -78,24 +77,24 @@ public class library_test {
         when(mockInput.read()).thenReturn(0);
         assertEquals(mockInput.read(),0);
     }
-   /* @Test
+    @Test
     public void testReadString() throws Exception{
         Input mockInput = mock(Input.class);
         Output mockOutput = mock(Output.class);
         new library(mockOutput, mockInput);
         when(mockInput.readString()).thenReturn("0");
-        assertEquals(mockInput.readString(),0);
-    }  */
+        assertEquals(mockInput.readString(),"0");
+    }
     @Test
     public void testSelectMenu() throws Exception{
         Input mockInput = mock(Input.class);
         Output mockOutput = mock(Output.class);
-        when(mockInput.read()).thenReturn(3).thenReturn(5).thenReturn(1).thenReturn(2) ;
+        when(mockInput.read()).thenReturn(3).thenReturn(5).thenReturn(1).thenReturn(2);
         (new library(mockOutput, mockInput)).selectMenu();
         verify(mockOutput).print("Exit");
         (new library(mockOutput, mockInput)).selectMenu();
         verify(mockOutput).print("Select a Valid Option");
-
+        (new library(mockOutput, mockInput)).selectMenu();
         verify(mockOutput).print("List of Books");
 
     }
