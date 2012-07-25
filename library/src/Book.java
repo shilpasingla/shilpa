@@ -13,5 +13,6 @@ public class Book {
     Book(String s)  {
         book_name = s;
     }
+    public String getName(){return(this.book_name);}
 
 }

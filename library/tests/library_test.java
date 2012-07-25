@@ -48,18 +48,17 @@ public class library_test {
         public void shouldReserveBook() {
             Book br1 = new Book("head first java");
             library lib = new library() ;
-            ArrayList <String> reserved_list = new ArrayList<String>() ;
+            Boolean reserved;
 
             lib.addBook(br1) ;
-            reserved_list = lib.reserve_book(br1) ;
-            assertEquals(1, reserved_list.size());
-            assertEquals(reserved_list.get(0), "head first java");
+            reserved = lib.reserve_book(br1) ;
+            assertEquals(true,reserved);
+
             Book br2 = new Book("programming in c");
             lib.addBook(br2);
-            reserved_list = lib.reserve_book(br2) ;
-            assertEquals(2,reserved_list.size() );
-            assertEquals(reserved_list.get(0), "head first java");
-            assertEquals(reserved_list.get(1),"programming in c");
+            reserved = lib.reserve_book(br2) ;
+            assertEquals(true,reserved );
+
 
 
         }
@@ -85,30 +84,5 @@ public class library_test {
         when(mockInput.readString()).thenReturn("0");
         assertEquals(mockInput.readString(),"0");
     }
-    @Test
-    public void testSelectMenu() throws Exception{
-        Input mockInput = mock(Input.class);
-        Output mockOutput = mock(Output.class);
-        when(mockInput.read()).thenReturn(3).thenReturn(5).thenReturn(1).thenReturn(2);
-        (new library(mockOutput, mockInput)).selectMenu();
-        verify(mockOutput).print("Exit");
-        (new library(mockOutput, mockInput)).selectMenu();
-        verify(mockOutput).print("Select a Valid Option");
-        (new library(mockOutput, mockInput)).selectMenu();
-        verify(mockOutput).print("List of Books");
 
-    }
-    @Test
-    public void testSelectSecondOption() throws Exception{
-        Input mockInput = mock(Input.class);
-        Output mockOutput = mock(Output.class);
-
-        when(mockInput.read()).thenReturn(1).thenReturn(3).thenReturn(4).thenReturn(1);
-        (new library(mockOutput, mockInput)).selectSecondOption();
-        verify(mockOutput).print("Reserve a Book");
-        (new library(mockOutput, mockInput)).selectSecondOption();
-        verify(mockOutput).print("Exit");
-        (new library(mockOutput, mockInput)).selectSecondOption();
-        verify(mockOutput).print("Select a Valid Option");
-    }
 }
