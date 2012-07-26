@@ -4,7 +4,6 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
 /**
  * Created with IntelliJ IDEA.
  * User: shisun
@@ -62,27 +61,7 @@ public class library_test {
 
 
         }
-    @Test
-    public void testPrint() throws Exception{
-        Output mockOutput = mock(Output.class);
-        new library(mockOutput,new Input());
-        verify(mockOutput).print("Welcome to the Bangalore Public Library System");
-    }
-    @Test
-    public void testRead() throws Exception{
-        Input mockInput = mock(Input.class);
-        Output mockOutput = mock(Output.class);
-        new library(mockOutput, mockInput);
-        when(mockInput.read()).thenReturn(0);
-        assertEquals(mockInput.read(),0);
-    }
-    @Test
-    public void testReadString() throws Exception{
-        Input mockInput = mock(Input.class);
-        Output mockOutput = mock(Output.class);
-        new library(mockOutput, mockInput);
-        when(mockInput.readString()).thenReturn("0");
-        assertEquals(mockInput.readString(),"0");
-    }
+
+
 
 }

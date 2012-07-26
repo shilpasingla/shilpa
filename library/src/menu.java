@@ -12,11 +12,14 @@ public class menu {
     private Output output;
     private Input input;
 
-    menu() {}
+    menu() {
+
+    }
 
     menu(Output output,Input input,library lib) throws IOException {
         this.output = output;
         this.input = input;
+        output.print("Welcome to the Bangalore Public Library System");
         selectMenu(lib);
     }
     public void selectMenu(library lib) throws IOException {

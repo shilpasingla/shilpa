@@ -15,21 +15,10 @@ public class library {
     private Input input;
 
      public library() {
-
+        addBooks();
      }
 
-    public library(Output output, Input input) throws IOException {
-        this.output = output;
-        this.input = input;
 
-        output.print("Welcome to the Bangalore Public Library System");
-        addBooks();
-
-
-
-
-
-    }
 
     private void addBooks() {
         Book book1 = new Book("head first java");
@@ -63,7 +52,7 @@ public class library {
     public static void main(String[] args) throws IOException {
         Output out = new Output();
         Input in = new Input();
-        library lib = new library(out,in);
+        library lib = new library();
         menu menuu = new menu(out,in,lib);
 
     }
