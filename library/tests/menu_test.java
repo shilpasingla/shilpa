@@ -21,7 +21,7 @@ public class menu_test {
 
         when(mockInput.read()).thenReturn(3).thenReturn(5).thenReturn(1).thenReturn(2);
         menu menuu = new menu(mockOutput ,mockInput ,lib);
-        verify(mockOutput).print("Exit");
+        verify(mockOutput).print("View list of movies");
         menuu.selectMenu(lib) ;
         verify(mockOutput).print("Select a Valid Option");
         menuu.selectMenu(lib);
@@ -42,5 +42,12 @@ public class menu_test {
         verify(mockOutput).print("Exit");
         //menuu.selectSecondOption(lib) ;
         verify(mockOutput).print("Select a Valid Option");
+    }
+    @Test
+    public void testPrint() throws Exception{
+        Output mockOutput = mock(Output.class);
+        library lib = new library();
+        menu menuu = new menu(mockOutput ,new Input() ,lib) ;
+        verify(mockOutput).print("Welcome to the Bangalore Public Library System");
     }
 }

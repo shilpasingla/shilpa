@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -9,15 +8,26 @@ import java.util.ArrayList;
  * To change this template use File | Settings | File Templates.
  */
 public class library {
-    ArrayList<String> bookList = new ArrayList<String>();
-    ArrayList<String> reservedList = new ArrayList<String>();
+    ArrayList<Book> bookList = new ArrayList<Book>();
+    ArrayList<Book> reservedList = new ArrayList<Book>();
+    ArrayList<Movie> movieList = new ArrayList<Movie>();
+    String[] movie_names = {"sholay","housefull","peepli","znmd","aag"};
+    String[] director_names = {"ramesh sippy","sajid khan","aamir khan","zoya akhtar","ram gopal verma"};
+    int[] ratings = {9,7,7,9,5};
     private Output output;
     private Input input;
 
      public library() {
         addBooks();
+         addMovies();
      }
 
+    private void addMovies() {
+        for(int i=0;i<5;i++)  {
+            Movie movie = new Movie(movie_names[i],director_names[i],ratings [i]) ;
+            addMovie(movie) ;
+        }
+    }
 
 
     private void addBooks() {
@@ -27,7 +37,7 @@ public class library {
         addBook(book2);
     }
 
-    public  ArrayList<String> get_all_books() {
+    public  ArrayList<Book> get_all_books() {
         return bookList;
 
     }
@@ -35,25 +45,28 @@ public class library {
 
     public void addBook(Book book) {
 
-        bookList.add(book.book_name) ;
+        bookList.add(book) ;
+
+    }
+    public void addMovie(Movie movie) {
+
+
+        movieList.add(movie);
 
     }
 
-    public Boolean reserve_book(Book bb) {
+    public boolean  reserve_book(library lib,Book bb) {
 
-        if(bookList.contains(bb.book_name) && !(reservedList.contains(bb.book_name) ))  {
-            reservedList.add(bb.book_name);
-
-        return true ;
+        if(!(lib.reservedList.contains(bb)))  {
+            reservedList.add(bb);
+             return true;
         }
-        else
+            else
             return false;
-    }
-    public static void main(String[] args) throws IOException {
-        Output out = new Output();
-        Input in = new Input();
-        library lib = new library();
-        menu menuu = new menu(out,in,lib);
+        }
 
+
+    public ArrayList<Movie> get_all_movies() {
+        return movieList;
     }
 }

@@ -18,7 +18,7 @@ public class library_test {
         public void shouldAddBook() {
             library lib = new library() ;
             lib.addBook(new Book());
-            ArrayList<String> books = lib.get_all_books();
+            ArrayList<Book> books = lib.get_all_books();
             assertEquals(1, books.size()) ;
 
             lib.addBook(new Book());
@@ -31,7 +31,7 @@ public class library_test {
         @Test
         public void shouldReturnAllBooks()  {
             library lib = new library();
-            ArrayList <String> books = lib.get_all_books();
+            ArrayList <Book> books = lib.get_all_books();
             Book books1 = new Book("head first java");
             Book books2 = new Book("programming in c");
             lib.addBook(books1) ;
@@ -45,23 +45,53 @@ public class library_test {
 
         @Test
         public void shouldReserveBook() {
-            Book br1 = new Book("head first java");
+            Book br1 = new Book("C++");
             library lib = new library() ;
             Boolean reserved;
 
             lib.addBook(br1) ;
-            reserved = lib.reserve_book(br1) ;
+            reserved = lib.reserve_book(lib,br1) ;
             assertEquals(true,reserved);
 
-            Book br2 = new Book("programming in c");
+            Book br2 = new Book("data structures");
             lib.addBook(br2);
-            reserved = lib.reserve_book(br2) ;
+            reserved = lib.reserve_book(lib,br2) ;
             assertEquals(true,reserved );
 
 
 
         }
+    @Test
+    public void shouldAddMovie() {
+        library lib = new library() ;
+        lib.addMovie(new Movie());
+        ArrayList<Movie> movies = lib.get_all_movies();
+        assertEquals(1, movies.size()) ;
+
+        lib.addMovie(new Movie());
+        movies = lib.get_all_movies();
+        assertEquals(2, movies.size()) ;
 
 
+    }
+
+    @Test
+    public void shouldReturnAllMovies()  {
+        library lib = new library();
+        ArrayList <Movie> movies = lib.get_all_movies();
+        Movie movie1 = new Movie("sholay","ramesh sippy",9);
+        Movie movie2 = new Movie("housefull","sajid khan",7);
+        lib.addMovie(movie1) ;
+        assertEquals(movies.get(0).name, "sholay");
+        assertEquals(movies.get(0).director, "ramesh sippy");
+        assertEquals(movies.get(0).rating, 9);
+        lib.addMovie(movie2) ;
+        assertEquals(movies.get(0).name, "sholay");
+        assertEquals(movies.get(0).director, "ramesh sippy");
+        assertEquals(movies.get(0).rating, 9);
+        assertEquals(movies.get(1).name, "housefull");
+        assertEquals(movies.get(1).director, "sajid khan");
+        assertEquals(movies.get(1).rating, 7);
+    }
 
 }

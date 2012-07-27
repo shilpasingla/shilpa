@@ -22,8 +22,9 @@ public class menu {
         output.print("Welcome to the Bangalore Public Library System");
         selectMenu(lib);
     }
+
     public void selectMenu(library lib) throws IOException {
-        output.print("Please Select one of the following menu options\n1. View Books\n2. Reserve a Book\n3. Exit");
+        output.print("Please Select one of the following menu options\n1. View Books\n2. Reserve a Book\n3. View list of movies\n4. Exit");
          try {
         int menuOption = input.read();
 
@@ -31,29 +32,48 @@ public class menu {
         if(menuOption == 1){
                     output.print("List of Books");
 
-                    ArrayList<String> books = lib.get_all_books();
+                    ArrayList<Book> books = lib.get_all_books();
 
                     for(int i=0;i<2;i++)
-                        output.print(books.get(i)) ;
+                        output.print(books.get(i).book_name ) ;
                     output.print("Please Select one of the following menu options\n1. Reserve a Book\n2. Go to Main Menu\n3. Exit");
                     try {
                         selectSecondOption(lib);} catch (IOException ioe){System.exit(1);}
 
                 }
                 else if(menuOption == 2){
-
+                    Boolean reserved = false;
                     output.print("reserve a book");
                     output.print("enter name of book");
                     String bookname = input.readString();
-                    Book bb = new Book(bookname);
-                    Boolean reserved = lib.reserve_book(bb);
-                    if(reserved == false)
-                        output.print("Sorry we don't have that book yet.");
-                    else
-                        output.print("Thank You! Enjoy the book");
+                     for(int i=0;i<2;i++){
+                         String s1 =  lib.bookList.get(i).book_name;
+                         if(s1.equals(bookname) )  {
+
+                             Book bb = lib.bookList.get(i);
+                              reserved = lib.reserve_book(lib,bb);
+                               break;
+                         }    }
+                         if(reserved == true)
+                             output.print("Thank You! Enjoy the book");
+                         else
+                             output.print("Sorry we don't have that book yet.");
+
+
+
+
+
+
 
                 }
                 else if(menuOption == 3) {
+                    output.print("View list of movies");
+                    ArrayList<Movie> movies = lib.get_all_movies();
+                    System.out.println("Name"+"   "+"Director"+"    "+"Rating");
+                    for(int i=0;i<5;i++)
+                        System.out.println(movies.get(i).name+" "+movies.get(i).director+" " +movies.get(i).rating);
+                }
+                else if(menuOption == 4) {
                     output.print("Exit");
 
                 }
@@ -64,34 +84,38 @@ public class menu {
          }
                 }
 
-
     public void selectSecondOption(library lib) throws IOException {
         try {
-        int menuOption = input.read();
+            int menuOption = input.read();
 
-                if(menuOption == 1){
-                    output.print("Reserve a Book");
-                    output.print("\n enter name of book");
-                    String bookname = input.readString();
-                    Book bb = new Book(bookname);
-                    Boolean reserved = lib.reserve_book(bb);
-                    if(reserved == false)
-                        output.print("Sorry we don't have that book yet.");
-                    else
-                        output.print("Thank You! Enjoy the book");
+            if(menuOption == 1){
+                output.print("Reserve a Book");
+                output.print("enter name of book");
+                Boolean reserved = false;
+                String bookname = input.readString();
+                for(int i=0;i<2;i++){
+                    if(lib.bookList.get(i).book_name == bookname)  {
+                        Book bb = lib.bookList.get(i);
+                        reserved = lib.reserve_book(lib,bb);
 
-
-                }
-                else if(menuOption == 2){
-                    selectMenu(lib);
-
-                }
-                else if(menuOption == 3) {
-                    output.print("Exit");
-
-                }
+                    }  }
+                if(reserved == true)
+                    output.print("Thank You! Enjoy the book");
                 else
-                    output.print("Select a Valid Option");   }
+                    output.print("Sorry we don't have that book yet.");
+
+
+            }
+            else if(menuOption == 2){
+                selectMenu(lib);
+
+            }
+            else if(menuOption == 3) {
+                output.print("Exit");
+
+            }
+            else
+                output.print("Select a Valid Option");   }
         catch(Exception e)
         {
             System.out.println("error");
@@ -99,4 +123,13 @@ public class menu {
 
 
 
-} }
+    }
+
+    public static void main(String[] args) throws IOException {
+        Output out = new Output();
+        Input in = new Input();
+        library ll = new library();
+        menu menuu = new menu(out,in,ll);
+
+    }
+}
