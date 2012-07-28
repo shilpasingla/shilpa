@@ -16,4 +16,13 @@ User() {}
     }
 
     public String getName(){return(this.username);}
+    public String getPasswd(){return(this.password);}
+
+    public boolean equals(Object user) {
+        User u = (User) user;
+        if(getName().equals(u.getName()) && (getPasswd().equals(u.getPasswd() )) )
+        return true;
+        else
+        return false;
+    }
 }

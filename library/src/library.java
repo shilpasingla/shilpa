@@ -11,31 +11,25 @@ public class library {
     ArrayList<Book> bookList = new ArrayList<Book>();
     ArrayList<Book> reservedList = new ArrayList<Book>();
     ArrayList<Movie> movieList = new ArrayList<Movie>();
-    String[] movie_names = {"sholay","housefull","peepli","znmd","aag"};
-    String[] director_names = {"ramesh sippy","sajid khan","aamir khan","zoya akhtar","ram gopal verma"};
-    int[] ratings = {9,7,7,9,5};
     private Output output;
     private Input input;
 
-     public library() {
-        addBooks();
+      library()
+      {
          addMovies();
-     }
+      }
 
-    private void addMovies() {
-        for(int i=0;i<5;i++)  {
-            Movie movie = new Movie(movie_names[i],director_names[i],ratings [i]) ;
+    public void addMovies() {
+        movieLibrary m = new movieLibrary() ;
+        for(int i=0;i<m.total_movies ;i++)  {
+            Movie movie = new Movie(m.movie_names[i],m.director_names[i],m.ratings [i]) ;
             addMovie(movie) ;
         }
+
     }
 
 
-    private void addBooks() {
-        Book book1 = new Book("head first java");
-        Book book2 = new Book("programming in c");
-        addBook(book1);
-        addBook(book2);
-    }
+
 
     public  ArrayList<Book> get_all_books() {
         return bookList;

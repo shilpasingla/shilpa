@@ -36,9 +36,9 @@ public class menu {
 
                     for(int i=0;i<2;i++)
                         output.print(books.get(i).book_name ) ;
-                    output.print("Please Select one of the following menu options\n1. Reserve a Book\n2. Go to Main Menu\n3. Exit");
+
                     try {
-                        selectSecondOption(lib);} catch (IOException ioe){System.exit(1);}
+                        selectMenu(lib);} catch (IOException ioe){System.exit(1);}
 
                 }
                 else if(menuOption == 2){
@@ -84,51 +84,13 @@ public class menu {
          }
                 }
 
-    public void selectSecondOption(library lib) throws IOException {
-        try {
-            int menuOption = input.read();
 
-            if(menuOption == 1){
-                output.print("Reserve a Book");
-                output.print("enter name of book");
-                Boolean reserved = false;
-                String bookname = input.readString();
-                for(int i=0;i<2;i++){
-                    if(lib.bookList.get(i).book_name == bookname)  {
-                        Book bb = lib.bookList.get(i);
-                        reserved = lib.reserve_book(lib,bb);
-
-                    }  }
-                if(reserved == true)
-                    output.print("Thank You! Enjoy the book");
-                else
-                    output.print("Sorry we don't have that book yet.");
-
-
-            }
-            else if(menuOption == 2){
-                selectMenu(lib);
-
-            }
-            else if(menuOption == 3) {
-                output.print("Exit");
-
-            }
-            else
-                output.print("Select a Valid Option");   }
-        catch(Exception e)
-        {
-            System.out.println("error");
-        }
-
-
-
-    }
 
     public static void main(String[] args) throws IOException {
         Output out = new Output();
         Input in = new Input();
         library ll = new library();
+        ll.addBook(new Book("head first java") ) ;
         menu menuu = new menu(out,in,ll);
 
     }

@@ -15,24 +15,42 @@ public class loginTest {
     @Test
     public void shouldAddUser() {
         login log = new login() ;
+         userData us = new userData() ;
+
         log.addUser(new User());
         ArrayList<User> users = log.get_all_users();
-        assertEquals(1, users.size()) ;
+        assertEquals(us.total_users +1, users.size()) ;
 
         log.addUser(new User());
         users = log.get_all_users();
-        assertEquals(2, users.size()) ;
+        assertEquals(us.total_users +2, users.size()) ;
 
 
     }
     @Test
     public void shouldCheckLoginDetails() {
-        String username = "111-1111";
-        String password = "1";
-        User user = new User(username ,password ) ;
+
+        User user = new User("111-1111","1") ;
+
         login log = new login();
-          log.addUser(user) ;
-        Boolean bb = log.checkLoginDetails(username, password);
+
+        Boolean bb = log.checkLoginDetails(user);
         assertEquals(true,bb);
+    }
+
+    @Test
+    public void shouldAddUsers()  {
+        login log = new login();
+        userData  us = new userData() ;
+        assertEquals(us.total_users ,log.userList.size() ) ;
+    }
+
+    @Test
+    public void shouldReturnAllUsers()  {
+        login log = new login();
+        ArrayList <User> users = log.get_all_users();
+        userData us = new userData() ;
+        assertEquals(us.total_users,users.size() );
+
     }
 }

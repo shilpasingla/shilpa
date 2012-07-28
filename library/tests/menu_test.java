@@ -28,21 +28,7 @@ public class menu_test {
         verify(mockOutput).print("List of Books");
 
     }
-    @Test
-    public void testSelectSecondOption() throws Exception{
-        Input mockInput = mock(Input.class);
-        Output mockOutput = mock(Output.class);
-        library lib = new library();
-        menu menuu = new menu(mockOutput ,mockInput ,lib);
-        when(mockInput.read()).thenReturn(1).thenReturn(3).thenReturn(4).thenReturn(1);
 
-        menuu.selectSecondOption(lib) ;
-        verify(mockOutput).print("Reserve a Book");
-        menuu.selectSecondOption(lib) ;
-        verify(mockOutput).print("Exit");
-        //menuu.selectSecondOption(lib) ;
-        verify(mockOutput).print("Select a Valid Option");
-    }
     @Test
     public void testPrint() throws Exception{
         Output mockOutput = mock(Output.class);

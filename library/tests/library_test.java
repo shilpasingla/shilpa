@@ -32,14 +32,16 @@ public class library_test {
         public void shouldReturnAllBooks()  {
             library lib = new library();
             ArrayList <Book> books = lib.get_all_books();
+
             Book books1 = new Book("head first java");
             Book books2 = new Book("programming in c");
             lib.addBook(books1) ;
-            assertEquals(books.get(0), "head first java");
+
+            assertEquals("head first java",books.get(0).book_name );
 
             lib.addBook(books2) ;
-            assertEquals(books.get(0), "head first java");
-            assertEquals(books.get(1),"programming in c");
+            assertEquals( "head first java",books.get(0).book_name );
+            assertEquals("programming in c",books.get(1).book_name );
 
         }
 
@@ -65,12 +67,13 @@ public class library_test {
     public void shouldAddMovie() {
         library lib = new library() ;
         lib.addMovie(new Movie());
+        movieLibrary m = new movieLibrary() ;
         ArrayList<Movie> movies = lib.get_all_movies();
-        assertEquals(1, movies.size()) ;
+        assertEquals(m.total_movies +1, movies.size()) ;
 
         lib.addMovie(new Movie());
         movies = lib.get_all_movies();
-        assertEquals(2, movies.size()) ;
+        assertEquals(m.total_movies +2, movies.size()) ;
 
 
     }
@@ -92,6 +95,13 @@ public class library_test {
         assertEquals(movies.get(1).name, "housefull");
         assertEquals(movies.get(1).director, "sajid khan");
         assertEquals(movies.get(1).rating, 7);
+    }
+
+    @Test
+    public void shouldAddMovies()  {
+        library lib = new library();
+        movieLibrary m = new movieLibrary() ;
+       assertEquals(m.total_movies ,lib.movieList.size() ) ;
     }
 
 }
