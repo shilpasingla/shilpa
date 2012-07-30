@@ -1,8 +1,8 @@
 /**
  * Created with IntelliJ IDEA.
  * User: shisun
- * Date: 26/7/12
- * Time: 5:18 PM
+ * Date: 29/7/12
+ * Time: 1:24 PM
  * To change this template use File | Settings | File Templates.
  */
 public class Movie {
@@ -11,21 +11,20 @@ public class Movie {
     int rating;
     Movie() {}
 
-    Movie(String name,String director,int rating)   {
+    Movie(String name,String director,int rating) {
         this.name = name;
         this.director = director;
         this.rating = rating;
-    }
-    public String getName() {
-        return name;
-    }
+        }
+    public String getName()
+    {
+        return this.name;
 
-
+    }
     public String getDirector() {
-        return director;
+        return this.director;
     }
-
     public int getRating() {
-        return rating;
+        return this.rating;
     }
 }

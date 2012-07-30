@@ -1,18 +1,27 @@
 /**
  * Created with IntelliJ IDEA.
  * User: shisun
- * Date: 20/7/12
- * Time: 6:22 PM
+ * Date: 29/7/12
+ * Time: 7:55 AM
  * To change this template use File | Settings | File Templates.
  */
 public class Book {
-
-    String book_name;
-    Book()
-    {}
-    Book(String s)  {
-        book_name = s;
+    boolean reserved;
+    String name;
+    Book() {
+        this.reserved = false;
     }
-    public String getName(){return(this.book_name);}
+    Book(String name)
+    {
+        this.name = name;
+    }
 
+    public boolean equals(Object object) {
+        Book book= (Book) object;
+        return name.equals(book.name) ;
+    }
+
+    public int hashCode() {
+        return 0;
+    }
 }

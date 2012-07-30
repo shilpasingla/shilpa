@@ -3,64 +3,41 @@ import java.util.ArrayList;
 /**
  * Created with IntelliJ IDEA.
  * User: shisun
- * Date: 20/7/12
- * Time: 7:37 PM
+ * Date: 29/7/12
+ * Time: 7:51 AM
  * To change this template use File | Settings | File Templates.
  */
-public class library {
-    ArrayList<Book> bookList = new ArrayList<Book>();
-    ArrayList<Book> reservedList = new ArrayList<Book>();
-    ArrayList<Movie> movieList = new ArrayList<Movie>();
-    private Output output;
-    private Input input;
+public class Library {
+    ArrayList<Book> bookList = new ArrayList<Book> ();
 
-      library()
-      {
-         addMovies();
-      }
 
-    public void addMovies() {
-        movieLibrary m = new movieLibrary() ;
-        for(int i=0;i<m.total_movies ;i++)  {
-            Movie movie = new Movie(m.movie_names[i],m.director_names[i],m.ratings [i]) ;
-            addMovie(movie) ;
+    public ArrayList<Book> viewBooks() {
+        for(int i=0;i<bookList.size();i++) {
+            Output.print(bookList.get(i).name);
         }
-
-    }
-
-
-
-
-    public  ArrayList<Book> get_all_books() {
         return bookList;
-
     }
-
 
     public void addBook(Book book) {
-
-        bookList.add(book) ;
-
-    }
-    public void addMovie(Movie movie) {
-
-
-        movieList.add(movie);
-
+        bookList.add(book);
     }
 
-    public boolean  reserve_book(library lib,Book bb) {
+    public boolean reserveBook(Book book) {
+        for(int i=0;i<bookList.size();i++){
+        if((bookList.get(i).equals(book) ) && bookList.get(i).hashCode() == book.hashCode()&& !(bookList.get(i).reserved) )  {
+            bookList.get(i).reserved = true;
+            return true;
+        }}
+        return false;
+    }
 
-        if(!(lib.reservedList.contains(bb)))  {
-            reservedList.add(bb);
-             return true;
+    public ArrayList<Movie> viewMovies() {
+        for(int i=0;i<MovieData.movieList.size();i++) {
+            Output.print(MovieData.movieList.get(i).getName() + "\t"
+                    + MovieData.movieList.get(i).getDirector() + "\t" + MovieData.movieList.get(i).getRating()  );
         }
-            else
-            return false;
-        }
-
-
-    public ArrayList<Movie> get_all_movies() {
-        return movieList;
+        return MovieData.movieList;
     }
+
+
 }

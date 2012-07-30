@@ -8,16 +8,14 @@ import static org.junit.Assert.assertTrue;
  * Created with IntelliJ IDEA.
  * User: shisun
  * Date: 29/7/12
- * Time: 4:40 PM
+ * Time: 8:43 AM
  * To change this template use File | Settings | File Templates.
  */
-public class UserTest {
+public class BookTest {
     @Test
     public void testEquality() {
-        assertTrue(new User("111-1111","1").equals(new User("111-1111","1")));
-        assertFalse(new User("111-1111","2").equals(new User("111-1111","1")));
-        assertFalse(new User("111-1111","2").equals(new User("222-2222","2")));
-        assertFalse(new User("111-1111","2").equals(new User("222-2222","1")));
+        assertTrue(new Book("head first java").equals(new Book("head first java")));
+        assertFalse(new Book("head first java").equals(new Book("programming in c")));
     }
 
     @Test
